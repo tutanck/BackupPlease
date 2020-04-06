@@ -36,6 +36,10 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
+      - add_ssh_keys:
+          fingerprints:
+            - "b4:a9:b3:92:a9:89:33:59:61:89:4f:8a:fc:cf:7c:98"
+
       - run:
           name: MONGO DUMP
           command: |
