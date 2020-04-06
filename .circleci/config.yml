@@ -38,7 +38,7 @@ jobs:
 
       - add_ssh_keys:
           fingerprints:
-            - "b4:a9:b3:92:a9:89:33:59:61:89:4f:8a:fc:cf:7c:98"
+            - "6b:cc:c4:88:e9:ea:83:84:18:93:a9:c0:f9:f4:02:8f"
 
       - run:
           name: MONGO DUMP
