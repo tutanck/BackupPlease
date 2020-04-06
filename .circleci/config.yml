@@ -47,8 +47,8 @@ jobs:
             git checkout -b backups 
             git add dumped
             echo "Backup of '`date`'" | git commit -F -            
-            git remote add origin $REPOSITORY_URL
-            git push -u --set-upstream origin backups
+            git remote add dum $REPOSITORY_URL
+            git push -u --set-upstream dum backups
 
   backup:
     docker:
