@@ -1,0 +1,16 @@
+{
+  "name": "backupplease",
+  "version": "1.0.0",
+  "description": "Automatic MongoDB Backup",
+  "main": "index.js",
+  "scripts": {
+    "ok": "node index.js"
+  },
+  "author": "tutanck",
+  "license": "ISC",
+  "dependencies": {
+    "googleapis": "^39.2.0",
+    "mongodb-backup": "1.6.9"
+  },
+  "devDependencies": {}
+}
