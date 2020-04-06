@@ -44,7 +44,7 @@ jobs:
             ls -al
             git config --global user.email $email
             git config --global user.name $name
-            git checkout -b backups
+            git checkout -b backups 
             git add dumped
             echo "Backup of '`date`'" | git commit -F -            
             git remote add origin $REPOSITORY_URL
