@@ -1,0 +1,41 @@
+version: 2.1 # CircleCI 2.1
+
+jobs:
+  backup:
+    docker:
+      - image: tutanck/node-mongo # specify the base image you desire here
+
+    working_directory: /home/circleci/workspace
+
+    steps:
+      - checkout # special step to check out source code to working directory
+
+      - add_ssh_keys:
+          fingerprints:
+            - $sshkey # SSH key with read and write access to github
+
+      - run:
+          name: MONGO DUMP
+          command: |
+            echo "backup_`date +"%m-%d-%Y_%Hh%Mm%S"`" > _vartmp
+            cat _vartmp
+            mkdir -p backups
+            mongodump $DUMP_CMD -o backups/`cat _vartmp`
+            git config --global user.email $email
+            git config --global user.name $name
+            git add backups
+            echo "[skip ci] `cat _vartmp`" | git commit -F -            
+            git remote add dummy $REPOSITORY_URL
+            git push --set-upstream dummy master
+
+workflows:
+  periodic_backup:
+    triggers:
+      - schedule:
+          cron: "30 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - backup
